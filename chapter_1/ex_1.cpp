@@ -1,3 +1,11 @@
+/*
+Exercise 1.1
+
+Given the truth values of the propositions p and q, find the
+truth values of the conjunction, disjunction, exclusive or,
+conditional statement, and biconditional of these propositions.
+*/
+
 #include <iostream>
 
 using namespace std;
