@@ -2,6 +2,34 @@
 
 using namespace std;
 
+// Definitions of Logical Operations
+
+bool logicalAnd(bool p, bool q){
+	return p && q;
+}
+
+bool logicalOr(bool p, bool q){
+	return p || q;
+}
+
+// The XOR operation
+bool logicalExclusiveOr(bool p, bool q){
+	return (p || q) && !(p && q);
+}
+
+bool logicalConditionalStatement(bool p, bool q){
+	// Original Condition: !(p && !q)
+	// Returns true false only if p is true and q is false
+	// Used De Morgan's law to make the expression more efficient
+	return !p || q;
+}
+
+bool logicalBiconditionalStatement(bool p, bool q){
+	return p == q;
+}
+
+// Helper Functions
+
 bool inputValueOfProposition(string name){
 	cout << "What is the truth value of proposition " << name << " (0 / 1)? ";
 
@@ -29,31 +57,20 @@ void printLogicalOperationValue(string name, bool value){
 	cout << endl;
 }
 
-bool exclusiveOr(bool p, bool q){
-	return (p || q) && !(p && q);
-}
-
-bool conditionalStatement(bool p, bool q){
-	return !(p && !q);
-}
-
-bool biconditionalStatement(bool p, bool q){
-	return p == q;
-}
-
 int main(int nNumberofArgs, char* pszArgs[]){
 	bool p = inputValueOfProposition("p");
 	bool q = inputValueOfProposition("q");
 
-	cout << endl << "Values of compound propositions:" << endl;
+	cout << endl << "Values of compound propositions (using logical operations):" << endl;
+
 	// Conjunction
-	printLogicalOperationValue("AND", p && q);
+	printLogicalOperationValue("Conjunction (logical and)", logicalAnd(p, q));
 	// Disjunction
-	printLogicalOperationValue("OR", p || q);
+	printLogicalOperationValue("Disjunction (logical or)", logicalOr(p, q));
 	// Exclusive Or
-	printLogicalOperationValue("XOR", exclusiveOr(p, q));
+	printLogicalOperationValue("XOR (logical exclusive or)", logicalExclusiveOr(p, q));
 	// Conditional Statement
-	printLogicalOperationValue("Conditional Statement", conditionalStatement(p, q));
+	printLogicalOperationValue("Logical Conditional Statement", logicalConditionalStatement(p, q));
 	// Biconditional Statement
-	printLogicalOperationValue("Biconditional Statement", biconditionalStatement(p, q));
+	printLogicalOperationValue("Logical Biconditional Statement", logicalBiconditionalStatement(p, q));
 }
