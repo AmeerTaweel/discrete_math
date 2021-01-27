@@ -10,6 +10,13 @@ values to its propositional variables.
 
 using namespace std;
 
+// Helper Functions
+
+// The XOR operation
+bool logicalExclusiveOr(bool p, bool q){
+	return (p || q) && !(p && q);
+}
+
 class Proposition{
 	public:
 		virtual bool evaluate();
@@ -38,6 +45,35 @@ class Conjunction: public Proposition{
 
 		bool evaluate(){
 			return p.evaluate() && q.evaluate();
+		}
+	private:
+		Proposition p, q;
+};
+
+class Disjunction: public Proposition{
+	public:
+		Disjunction(Proposition a, Proposition b){
+			p = a;
+			q = b;
+		}
+
+		bool evaluate(){
+			return p.evaluate() || q.evaluate();
+		}
+	private:
+		Proposition p, q;
+};
+
+
+class ExclusiveOr: public Proposition{
+	public:
+		ExclusiveOr(Proposition a, Proposition b){
+			p = a;
+			q = b;
+		}
+
+		bool evaluate(){
+			return logicalExclusiveOr(p.evaluate(), q.evaluate());
 		}
 	private:
 		Proposition p, q;
